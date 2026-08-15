@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>B2 Beruf Trainer</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="menu" class="container">
+      <h1>B2 Beruf Trainer</h1>
+
+      <h2>Prüfungsvorbereitung</h2>
+
+      <button onclick="startLesen()">📖 Lesen Teil 2</button>
+
+      <button disabled>🎧 Hören</button>
+
+      <button disabled>✍️ Schreiben</button>
+
+      <button disabled>🗣️ Sprechen</button>
+    </div>
+
+    <div id="lesen" class="container hidden">
+      <button onclick="backMenu()">⬅️ Zurück zum Menü</button>
+
+      <h1>Lesen Teil 2</h1>
+
+      <div id="test-container"></div>
+
+      <button onclick="checkAll()">Test auswerten</button>
+
+      <div id="result"></div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="vocabulary.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
