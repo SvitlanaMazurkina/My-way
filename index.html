@@ -10,12 +10,20 @@
   </head>
 
   <body>
+    <!-- ==================== MENÜ ==================== -->
+
     <div id="menu" class="container">
       <h1>B2 Beruf Trainer</h1>
 
       <h2>Prüfungsvorbereitung</h2>
 
-      <button onclick="startLesen()">📖 Lesen Teil 2</button>
+      <button onclick="startLesen1()">📖 Lesen Teil 1</button>
+
+      <button onclick="startLesen2()">📖 Lesen Teil 2</button>
+
+      <button onclick="startLesen3()">📖 Lesen Teil 3</button>
+
+      <button onclick="startLesen4()">📖 Lesen Teil 4</button>
 
       <button disabled>🎧 Hören</button>
 
@@ -24,19 +32,84 @@
       <button disabled>🗣️ Sprechen</button>
     </div>
 
-    <div id="lesen" class="container hidden">
+    <!-- ==================== LESEN TEIL 1 ==================== -->
+
+    <div id="lesen1" class="container hidden">
+      <button onclick="backMenu()">⬅️ Zurück zum Menü</button>
+
+      <h1>Lesen Teil 1</h1>
+
+      <p class="instruction">
+        Lesen Sie die fünf Situationen und die acht Texte. Welcher Text passt zu
+        welcher Situation? Drei Texte bleiben übrig.
+      </p>
+
+      <div id="test-container-1"></div>
+
+      <button onclick="checkAll1()">Test auswerten</button>
+
+      <div id="result1"></div>
+    </div>
+
+    <!-- ==================== LESEN TEIL 2 ==================== -->
+
+    <div id="lesen2" class="container hidden">
       <button onclick="backMenu()">⬅️ Zurück zum Menü</button>
 
       <h1>Lesen Teil 2</h1>
 
-      <div id="test-container"></div>
+      <div id="test-container-2"></div>
 
-      <button onclick="checkAll()">Test auswerten</button>
+      <button onclick="checkAll2()">Test auswerten</button>
 
-      <div id="result"></div>
+      <div id="result2"></div>
     </div>
 
+    <!-- ==================== LESEN TEIL 3 ==================== -->
+
+    <div id="lesen3" class="container hidden">
+      <button onclick="backMenu()">⬅️ Zurück zum Menü</button>
+
+      <h1>Lesen Teil 3</h1>
+
+      <p class="instruction">
+        Lesen Sie die vier Fragen. Welche Antwort (a–f) passt zu welcher Frage?
+        Eine Frage bleibt ohne passende Antwort. Schreiben Sie dafür
+        <strong>X</strong>.
+      </p>
+
+      <div id="test-container-3"></div>
+
+      <button onclick="checkAll3()">Test auswerten</button>
+
+      <div id="result3"></div>
+    </div>
+
+    <!-- ==================== LESEN TEIL 4 ==================== -->
+
+    <div id="lesen4" class="container hidden">
+      <button onclick="backMenu()">⬅️ Zurück zum Menü</button>
+
+      <h1>Lesen Teil 4</h1>
+
+      <p class="instruction">
+        Lesen Sie das Protokoll und die Fragen. Wählen Sie jeweils die richtige
+        Antwort.
+      </p>
+
+      <div id="test-container-4"></div>
+
+      <button onclick="checkAll4()">Test auswerten</button>
+
+      <div id="result4"></div>
+    </div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+
+    <script src="questions1.js"></script>
     <script src="questions.js"></script>
+    <script src="questions3.js"></script>
+    <script src="questions4.js"></script>
     <script src="vocabulary.js"></script>
     <script src="script.js"></script>
   </body>

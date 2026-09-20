@@ -1,3 +1,7 @@
+/* ============================================================
+   GRUNDSTIL
+============================================================ */
+
 body {
   font-family: Arial, sans-serif;
   background: #f5f5f5;
@@ -6,15 +10,20 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 40px auto;
   background: white;
   padding: 30px;
   border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
 }
 
 h1 {
   text-align: center;
+}
+
+h2 {
+  margin-top: 25px;
 }
 
 button {
@@ -23,13 +32,11 @@ button {
   max-width: 400px;
   margin: 15px auto;
   padding: 12px;
-
   font-size: 16px;
-
   cursor: pointer;
-
   border-radius: 8px;
   border: none;
+  background: #e8e8e8;
 }
 
 button:hover {
@@ -38,24 +45,183 @@ button:hover {
 
 button:disabled {
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .hidden {
   display: none;
 }
 
+/* ============================================================
+   INSTRUCTION
+============================================================ */
+
+.instruction {
+  background: #f0f4f8;
+  padding: 15px;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   LESEN TEIL 1
+============================================================ */
+
+.teil1-test {
+  margin: 35px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.teil1-test > h2 {
+  margin-top: 0;
+}
+
+/* TEXTE */
+
+.teil1-texts {
+  background: #eeeeee;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.teil1-texts h3 {
+  margin-top: 0;
+}
+
+.teil1-text {
+  display: flex;
+  gap: 12px;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.teil1-text-letter {
+  flex: 0 0 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  text-transform: lowercase;
+}
+
+/* FRAGEN */
+
+.teil1-questions h3 {
+  margin-top: 25px;
+}
+
+.teil1-question {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.teil1-question p {
+  line-height: 1.6;
+}
+
+/* ВАРІАНТИ — В СТОВПЧИК */
+
+.teil1-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.teil1-option {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+
+  gap: 12px;
+  padding: 12px;
+  margin: 0;
+
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+
+  cursor: pointer;
+  transition: 0.2s;
+
+  line-height: 1.45;
+}
+
+.teil1-option:hover {
+  background: #f0f0f0;
+}
+
+.teil1-option input {
+  cursor: pointer;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.teil1-option .option-letter {
+  flex: 0 0 30px;
+}
+
+/* ПРАВИЛЬНА */
+
+.teil1-option.selected-correct {
+  border-color: #2e9d50;
+  background: #e9f8ed;
+}
+
+.teil1-option.selected-correct .option-letter {
+  background: #2e9d50;
+  color: white;
+}
+
+/* НЕПРАВИЛЬНА */
+
+.teil1-option.selected-wrong {
+  border-color: #d9534f;
+  background: #fdeaea;
+}
+
+.teil1-option.selected-wrong .option-letter {
+  background: #d9534f;
+  color: white;
+}
+
+/* ПРАВИЛЬНА ПІСЛЯ ПОМИЛКИ */
+
+.teil1-option.correct-answer {
+  border-color: #2e9d50;
+  background: #e9f8ed;
+}
+
+.teil1-option.correct-answer .option-letter {
+  background: #2e9d50;
+  color: white;
+}
+
+/* ============================================================
+   LESEN TEIL 2
+============================================================ */
+
 .text-box {
   background: #eeeeee;
   padding: 20px;
   margin: 20px 0;
-
   line-height: 1.6;
+  border-radius: 8px;
 }
 
 .question {
   margin-top: 20px;
   padding: 20px;
-
   border-radius: 8px;
   background: #fafafa;
 }
@@ -64,11 +230,333 @@ button:disabled {
   margin: 10px 0;
 }
 
-#result {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 20px;
+/* ВАРІАНТИ TEIL 2 — В СТОВПЧИК */
+
+.teil2-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
 }
+
+.teil2-option {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+
+  gap: 12px;
+  padding: 12px;
+  margin: 0;
+
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+
+  cursor: pointer;
+  transition: 0.2s;
+
+  line-height: 1.45;
+}
+
+.teil2-option:hover {
+  background: #f0f0f0;
+}
+
+.teil2-option input {
+  cursor: pointer;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.teil2-option .option-letter {
+  flex: 0 0 30px;
+}
+
+/* ПРАВИЛЬНА */
+
+.teil2-option.selected-correct {
+  border-color: #2e9d50;
+  background: #e9f8ed;
+}
+
+.teil2-option.selected-correct .option-letter {
+  background: #2e9d50;
+  color: white;
+}
+
+/* НЕПРАВИЛЬНА */
+
+.teil2-option.selected-wrong {
+  border-color: #d9534f;
+  background: #fdeaea;
+}
+
+.teil2-option.selected-wrong .option-letter {
+  background: #d9534f;
+  color: white;
+}
+
+/* ПРАВИЛЬНА ПІСЛЯ ПОМИЛКИ */
+
+.teil2-option.correct-answer {
+  border-color: #2e9d50;
+  background: #e9f8ed;
+}
+
+.teil2-option.correct-answer .option-letter {
+  background: #2e9d50;
+  color: white;
+}
+
+/* ============================================================
+   LESEN TEIL 3
+============================================================ */
+
+.teil3-test {
+  margin: 35px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.test-header {
+  background: #eeeeee;
+  padding: 20px;
+}
+
+.test-header h2 {
+  margin-top: 0;
+}
+
+.forum-responses {
+  padding: 20px;
+}
+
+.forum-responses h3 {
+  margin-top: 0;
+}
+
+.forum-answer {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  margin: 10px 0;
+  background: #fafafa;
+  border-radius: 7px;
+  line-height: 1.6;
+}
+
+.forum-answer strong {
+  min-width: 25px;
+}
+
+.questions-part {
+  padding: 20px;
+}
+
+.teil3-question {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.teil3-question p {
+  line-height: 1.6;
+}
+
+.teil3-options {
+  margin-top: 15px;
+}
+
+.teil3-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin: 8px 0;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.teil3-option:hover {
+  background: #f0f0f0;
+}
+
+.teil3-option input {
+  cursor: pointer;
+}
+
+.option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #eeeeee;
+  font-weight: bold;
+}
+
+/* ============================================================
+   LESEN TEIL 4
+============================================================ */
+
+.teil4-test {
+  margin: 35px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.teil4-test h2 {
+  margin-top: 0;
+}
+
+.teil4-question {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.teil4-question p {
+  line-height: 1.6;
+}
+
+.teil4-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.teil4-option {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+
+  gap: 12px;
+  padding: 12px;
+
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+
+  cursor: pointer;
+  transition: 0.2s;
+
+  line-height: 1.45;
+}
+
+.teil4-option:hover {
+  background: #f0f0f0;
+}
+
+.teil4-option input {
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.teil4-option .option-letter {
+  flex: 0 0 30px;
+}
+
+/* ============================================================
+   FEEDBACK
+============================================================ */
+
+.feedback {
+  margin-top: 15px;
+  min-height: 25px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.feedback-correct {
+  color: #238b45;
+}
+
+.feedback-wrong {
+  color: #c9302c;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   ALLGEMEINE RICHTIG/FALSCH KLASSEN
+============================================================ */
+
+.selected-correct {
+  border-color: #2e9d50;
+  background: #e9f8ed;
+}
+
+.selected-correct .option-letter {
+  background: #2e9d50;
+  color: white;
+}
+
+.selected-wrong {
+  border-color: #d9534f;
+  background: #fdeaea;
+}
+
+.selected-wrong .option-letter {
+  background: #d9534f;
+  color: white;
+}
+
+.correct-answer {
+  border-color: #2e9d50;
+  background: #e9f8ed;
+}
+
+.correct-answer .option-letter {
+  background: #2e9d50;
+  color: white;
+}
+
+/* ============================================================
+   ENDRESULTAT
+============================================================ */
+
+.final-result {
+  margin-top: 30px;
+  padding: 25px;
+  text-align: center;
+  background: #eeeeee;
+  border-radius: 10px;
+  font-size: 21px;
+}
+
+.final-result h3 {
+  margin-top: 0;
+}
+
+/* ============================================================
+   FEHLERMELDUNG
+============================================================ */
+
+.error-message {
+  padding: 20px;
+  background: #fdeaea;
+  border: 2px solid #d9534f;
+  border-radius: 8px;
+  color: #c9302c;
+  font-weight: bold;
+}
+
+/* ============================================================
+   ÜBERSETZUNG
+============================================================ */
+
 .translate-word {
   color: #005bbb;
   cursor: help;
@@ -77,19 +565,45 @@ button:disabled {
 
 .translation-tooltip {
   position: absolute;
-
   background: #222;
   color: white;
-
   padding: 8px 12px;
-
   border-radius: 6px;
-
   font-size: 14px;
-
   z-index: 9999;
-
   max-width: 250px;
-
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    margin: 10px auto;
+    padding: 15px;
+  }
+
+  .forum-answer {
+    flex-direction: column;
+  }
+
+  .teil3-option {
+    align-items: flex-start;
+  }
+
+  .teil1-text {
+    align-items: flex-start;
+  }
+
+  .teil1-option,
+  .teil2-option,
+  .teil4-option {
+    align-items: flex-start;
+  }
 }
