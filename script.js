@@ -1,9 +1,14 @@
-/* ============================================================
-   ALL SECTIONS
-============================================================ */
+// ============================================================
+// B2 BERUF TRAINER
+// script.js
+// ============================================================
+
+// ============================================================
+// НАВІГАЦІЯ
+// ============================================================
 
 function hideAllSections() {
-  const sections = ["menu", "lesen1", "lesen2", "lesen3", "lesen4"];
+  const sections = ["menu", "lesen1", "lesen2", "lesen3", "lesen4", "hoeren1"];
 
   sections.forEach((id) => {
     const element = document.getElementById(id);
@@ -14,322 +19,140 @@ function hideAllSections() {
   });
 }
 
-/* ============================================================
-   MENU
-============================================================ */
+function backMenu() {
+  hideAllSections();
+
+  const menu = document.getElementById("menu");
+
+  if (menu) {
+    menu.classList.remove("hidden");
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
 
 function startLesen1() {
   hideAllSections();
 
-  document.getElementById("lesen1").classList.remove("hidden");
+  const section = document.getElementById("lesen1");
+
+  if (section) {
+    section.classList.remove("hidden");
+  }
 
   loadTest1();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 function startLesen2() {
   hideAllSections();
 
-  document.getElementById("lesen2").classList.remove("hidden");
+  const section = document.getElementById("lesen2");
+
+  if (section) {
+    section.classList.remove("hidden");
+  }
 
   loadTest2();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 function startLesen3() {
   hideAllSections();
 
-  document.getElementById("lesen3").classList.remove("hidden");
+  const section = document.getElementById("lesen3");
+
+  if (section) {
+    section.classList.remove("hidden");
+  }
 
   loadTest3();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 function startLesen4() {
   hideAllSections();
 
-  document.getElementById("lesen4").classList.remove("hidden");
+  const section = document.getElementById("lesen4");
 
-  if (typeof loadTest4 === "function") {
-    loadTest4();
+  if (section) {
+    section.classList.remove("hidden");
   }
+
+  loadTest4();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
-function backMenu() {
+function startHoeren1() {
   hideAllSections();
 
-  document.getElementById("menu").classList.remove("hidden");
+  const section = document.getElementById("hoeren1");
+
+  if (section) {
+    section.classList.remove("hidden");
+  }
+
+  // Diese Funktion kommt aus hoeren.js
+  if (typeof loadHoeren1 === "function") {
+    loadHoeren1();
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
-/* ============================================================
-   LESEN TEIL 1
-============================================================ */
+// ============================================================
+// ERGEBNIS
+// ============================================================
 
-function loadTest1() {
-  const container = document.getElementById("test-container-1");
+function showResult(resultId, correct, total) {
+  const result = document.getElementById(resultId);
 
-  if (!container) return;
+  if (!result) {
+    return;
+  }
 
-  container.innerHTML = "";
-
-  if (typeof lesenTeil1 === "undefined" || !Array.isArray(lesenTeil1)) {
-    container.innerHTML = `
-      <div class="error-message">
-        Lesen Teil 1 konnte nicht geladen werden.
+  if (total === 0) {
+    result.innerHTML = `
+      <div class="result-box">
+        Keine Aufgaben gefunden.
       </div>
     `;
 
     return;
   }
 
-  lesenTeil1.forEach((test, testIndex) => {
-    const testBox = document.createElement("div");
-
-    testBox.className = "teil1-test";
-
-    /* ---------- TITEL ---------- */
-
-    const title = document.createElement("h2");
-
-    title.textContent = test.title;
-
-    testBox.appendChild(title);
-
-    /* ---------- TEXTE ---------- */
-
-    const textsBox = document.createElement("div");
-
-    textsBox.className = "teil1-texts";
-
-    const textsTitle = document.createElement("h3");
-
-    textsTitle.textContent = "Texte";
-
-    textsBox.appendChild(textsTitle);
-
-    Object.entries(test.texts).forEach(([letter, text]) => {
-      const textItem = document.createElement("div");
-
-      textItem.className = "teil1-text";
-
-      const letterElement = document.createElement("strong");
-
-      letterElement.className = "teil1-text-letter";
-
-      letterElement.textContent = letter;
-
-      const textElement = document.createElement("div");
-
-      textElement.className = "teil1-text-content";
-
-      textElement.innerHTML = text.replace(/\n/g, "<br>");
-
-      textItem.appendChild(letterElement);
-
-      textItem.appendChild(textElement);
-
-      textsBox.appendChild(textItem);
-    });
-
-    testBox.appendChild(textsBox);
-
-    /* ---------- SITUATIONS ---------- */
-
-    const questionsBox = document.createElement("div");
-
-    questionsBox.className = "teil1-questions";
-
-    const questionsTitle = document.createElement("h3");
-
-    questionsTitle.textContent = "Welche Antwort passt?";
-
-    questionsBox.appendChild(questionsTitle);
-
-    test.situations.forEach((question, questionIndex) => {
-      const questionBox = document.createElement("div");
-
-      questionBox.className = "teil1-question";
-
-      questionBox.id = `teil1-question-${testIndex}-${questionIndex}`;
-
-      const questionText = document.createElement("p");
-
-      questionText.innerHTML = `<strong>${question.number}.</strong> ${question.text}`;
-
-      questionBox.appendChild(questionText);
-
-      const optionsBox = document.createElement("div");
-
-      optionsBox.className = "teil1-options";
-
-      Object.keys(test.texts).forEach((letter) => {
-        const label = document.createElement("label");
-
-        label.className = "teil1-option";
-
-        const radio = document.createElement("input");
-
-        radio.type = "radio";
-
-        radio.name = `teil1-${testIndex}-${questionIndex}`;
-
-        radio.value = letter;
-
-        radio.onchange = function () {
-          checkTeil1Answer(testIndex, questionIndex, letter);
-        };
-
-        const letterSpan = document.createElement("span");
-
-        letterSpan.className = "option-letter";
-
-        letterSpan.textContent = letter;
-
-        label.appendChild(radio);
-
-        label.appendChild(letterSpan);
-
-        optionsBox.appendChild(label);
-      });
-
-      questionBox.appendChild(optionsBox);
-
-      const feedback = document.createElement("div");
-
-      feedback.className = "feedback";
-
-      feedback.id = `feedback1-${testIndex}-${questionIndex}`;
-
-      questionBox.appendChild(feedback);
-
-      questionsBox.appendChild(questionBox);
-    });
-
-    testBox.appendChild(questionsBox);
-
-    container.appendChild(testBox);
-  });
-
-  const result = document.getElementById("result1");
-
-  if (result) {
-    result.innerHTML = "";
-  }
-
-  if (typeof addTranslations === "function") {
-    addTranslations();
-  }
-}
-
-/* ============================================================
-   TEIL 1 - SOFORTIGE KONTROLLE
-============================================================ */
-
-function checkTeil1Answer(testIndex, questionIndex, selectedAnswer) {
-  const test = lesenTeil1[testIndex];
-
-  const question = test.situations[questionIndex];
-
-  const questionBox = document.getElementById(
-    `teil1-question-${testIndex}-${questionIndex}`,
-  );
-
-  if (!questionBox) return;
-
-  const options = questionBox.querySelectorAll(".teil1-option");
-
-  options.forEach((option) => {
-    option.classList.remove(
-      "selected-correct",
-      "selected-wrong",
-      "correct-answer",
-    );
-  });
-
-  const selectedOption = Array.from(options).find((option) => {
-    const input = option.querySelector("input");
-
-    return input && input.value === selectedAnswer;
-  });
-
-  const correctOption = Array.from(options).find((option) => {
-    const input = option.querySelector("input");
-
-    return input && input.value === question.correct;
-  });
-
-  const feedback = document.getElementById(
-    `feedback1-${testIndex}-${questionIndex}`,
-  );
-
-  if (selectedAnswer === question.correct) {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-correct");
-    }
-
-    if (feedback) {
-      feedback.innerHTML = "✓ Richtig!";
-
-      feedback.className = "feedback feedback-correct";
-    }
-  } else {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-wrong");
-    }
-
-    if (correctOption) {
-      correctOption.classList.add("correct-answer");
-    }
-
-    if (feedback) {
-      feedback.innerHTML = `✗ Falsch. Die richtige Antwort ist <strong>${question.correct}</strong>.`;
-
-      feedback.className = "feedback feedback-wrong";
-    }
-  }
-}
-
-/* ============================================================
-   TEIL 1 - GESAMTERGEBNIS
-============================================================ */
-
-function checkAll1() {
-  let total = 0;
-
-  let correct = 0;
-
-  if (typeof lesenTeil1 === "undefined" || !Array.isArray(lesenTeil1)) {
-    return;
-  }
-
-  lesenTeil1.forEach((test, testIndex) => {
-    test.situations.forEach((question, questionIndex) => {
-      total++;
-
-      const selected = document.querySelector(
-        `input[name="teil1-${testIndex}-${questionIndex}"]:checked`,
-      );
-
-      if (selected && selected.value === question.correct) {
-        correct++;
-      }
-    });
-  });
-
-  const result = document.getElementById("result1");
-
-  if (!result) return;
-
-  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const percentage = Math.round((correct / total) * 100);
 
   result.innerHTML = `
-    <div class="final-result">
-      <h3>Ergebnis Lesen Teil 1</h3>
-
+    <div class="result-box">
+      <h2>Ergebnis</h2>
       <p>
-        <strong>${correct} von ${total}</strong>
-        Antworten richtig
+        <strong>${correct} von ${total}</strong> richtig
       </p>
-
       <p>
-        ${percent} %
+        <strong>${percentage}%</strong>
       </p>
     </div>
   `;
@@ -340,21 +163,247 @@ function checkAll1() {
   });
 }
 
-/* ============================================================
-   LESEN TEIL 2
-============================================================ */
+// ============================================================
+// LESEN TEIL 1
+// ============================================================
+
+function loadTest1() {
+  const container = document.getElementById("test-container-1");
+
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = "";
+
+  if (typeof lesenTeil1 === "undefined" || !Array.isArray(lesenTeil1)) {
+    container.innerHTML = `
+      <div class="error-message">
+        Die Daten für Lesen Teil 1 konnten nicht geladen werden.
+      </div>
+    `;
+
+    return;
+  }
+
+  lesenTeil1.forEach((test, testIndex) => {
+    const testBox = document.createElement("div");
+    testBox.className = "teil1-test";
+
+    // ----------------------------------------------------------
+    // TITEL
+    // ----------------------------------------------------------
+
+    const title = document.createElement("h2");
+    title.textContent = test.title;
+
+    testBox.appendChild(title);
+
+    // ----------------------------------------------------------
+    // TEXTE A-H
+    // ----------------------------------------------------------
+
+    if (test.texts && typeof test.texts === "object") {
+      const textsTitle = document.createElement("h3");
+      textsTitle.textContent = "Texte";
+
+      testBox.appendChild(textsTitle);
+
+      const textsBox = document.createElement("div");
+      textsBox.className = "teil1-texts";
+
+      const letters = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+      letters.forEach((letter) => {
+        if (!test.texts[letter]) {
+          return;
+        }
+
+        const textBox = document.createElement("div");
+        textBox.className = "teil1-text";
+
+        const textLetter = document.createElement("strong");
+        textLetter.className = "teil1-text-letter";
+        textLetter.textContent = letter;
+
+        const textContent = document.createElement("div");
+        textContent.className = "teil1-text-content";
+
+        textContent.style.whiteSpace = "pre-line";
+
+        textContent.textContent = String(test.texts[letter]).trim();
+
+        textBox.appendChild(textLetter);
+        textBox.appendChild(textContent);
+
+        textsBox.appendChild(textBox);
+      });
+
+      testBox.appendChild(textsBox);
+    }
+
+    // ----------------------------------------------------------
+    // SITUATIONEN
+    // ----------------------------------------------------------
+
+    if (Array.isArray(test.situations)) {
+      const situationsTitle = document.createElement("h3");
+      situationsTitle.textContent = "Situationen";
+
+      testBox.appendChild(situationsTitle);
+
+      const situationsBox = document.createElement("div");
+      situationsBox.className = "teil1-questions";
+
+      test.situations.forEach((situation, questionIndex) => {
+        const questionBox = document.createElement("div");
+
+        questionBox.className = "teil1-question";
+
+        const questionText = document.createElement("p");
+
+        const number = document.createElement("strong");
+
+        number.textContent = situation.number + ". ";
+
+        questionText.appendChild(number);
+
+        questionText.appendChild(document.createTextNode(situation.text));
+
+        questionBox.appendChild(questionText);
+
+        const optionsBox = document.createElement("div");
+
+        optionsBox.className = "teil1-options";
+
+        const letters = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+        letters.forEach((letter) => {
+          const label = document.createElement("label");
+
+          label.className = "teil1-option";
+
+          const input = document.createElement("input");
+
+          input.type = "radio";
+
+          input.name = `lesen1-${testIndex}-${questionIndex}`;
+
+          input.value = letter;
+
+          const letterSpan = document.createElement("span");
+
+          letterSpan.className = "option-letter";
+
+          letterSpan.textContent = letter;
+
+          label.appendChild(input);
+          label.appendChild(letterSpan);
+
+          input.addEventListener("change", function () {
+            checkTeil1Answer(input, questionBox, situation.correct);
+          });
+
+          optionsBox.appendChild(label);
+        });
+
+        questionBox.appendChild(optionsBox);
+
+        situationsBox.appendChild(questionBox);
+      });
+
+      testBox.appendChild(situationsBox);
+    }
+
+    container.appendChild(testBox);
+  });
+}
+
+function checkTeil1Answer(input, questionBox, correctAnswer) {
+  const options = questionBox.querySelectorAll(".teil1-option");
+
+  options.forEach((option) => {
+    option.classList.remove(
+      "selected-correct",
+      "selected-wrong",
+      "correct-answer",
+    );
+  });
+
+  const selectedLabel = input.closest(".teil1-option");
+
+  if (!selectedLabel) {
+    return;
+  }
+
+  const selected = input.value.toLowerCase();
+
+  const correct = String(correctAnswer).toLowerCase();
+
+  if (selected === correct) {
+    selectedLabel.classList.add("selected-correct");
+  } else {
+    selectedLabel.classList.add("selected-wrong");
+
+    options.forEach((option) => {
+      const optionInput = option.querySelector("input");
+
+      if (optionInput && optionInput.value.toLowerCase() === correct) {
+        option.classList.add("correct-answer");
+      }
+    });
+  }
+}
+
+function checkAll1() {
+  let total = 0;
+  let correct = 0;
+
+  if (typeof lesenTeil1 === "undefined" || !Array.isArray(lesenTeil1)) {
+    return;
+  }
+
+  lesenTeil1.forEach((test, testIndex) => {
+    if (!Array.isArray(test.situations)) {
+      return;
+    }
+
+    test.situations.forEach((situation, questionIndex) => {
+      total++;
+
+      const selected = document.querySelector(
+        `input[name="lesen1-${testIndex}-${questionIndex}"]:checked`,
+      );
+
+      if (
+        selected &&
+        selected.value.toLowerCase() === String(situation.correct).toLowerCase()
+      ) {
+        correct++;
+      }
+    });
+  });
+
+  showResult("result1", correct, total);
+}
+
+// ============================================================
+// LESEN TEIL 2
+// ============================================================
 
 function loadTest2() {
   const container = document.getElementById("test-container-2");
 
-  if (!container) return;
+  if (!container) {
+    return;
+  }
 
   container.innerHTML = "";
 
   if (typeof lessons === "undefined" || !Array.isArray(lessons)) {
     container.innerHTML = `
       <div class="error-message">
-        Lesen Teil 2 konnte nicht geladen werden.
+        Die Daten für Lesen Teil 2 konnten nicht geladen werden.
       </div>
     `;
 
@@ -366,114 +415,102 @@ function loadTest2() {
 
     lessonBox.className = "lesson";
 
+    // --------------------------------------------------------
+    // TITEL
+    // --------------------------------------------------------
+
     const title = document.createElement("h2");
 
-    title.textContent = lesson.title || `Test ${lessonIndex + 1}`;
+    title.textContent = lesson.title;
 
     lessonBox.appendChild(title);
 
-    const textBox = document.createElement("div");
+    // --------------------------------------------------------
+    // TEXT
+    // --------------------------------------------------------
 
-    textBox.className = "text-box";
+    if (lesson.text) {
+      const textBox = document.createElement("div");
 
-    textBox.innerHTML = lesson.text.replace(/\n/g, "<br>");
+      textBox.className = "text-box";
 
-    lessonBox.appendChild(textBox);
+      textBox.style.whiteSpace = "pre-line";
 
-    lesson.questions.forEach((question, questionIndex) => {
-      const questionBox = document.createElement("div");
+      textBox.textContent = String(lesson.text).trim();
 
-      questionBox.className = "question teil2-question";
+      lessonBox.appendChild(textBox);
+    }
 
-      questionBox.id = `teil2-question-${lessonIndex}-${questionIndex}`;
+    // --------------------------------------------------------
+    // FRAGEN
+    // --------------------------------------------------------
 
-      const questionTitle = document.createElement("p");
+    if (Array.isArray(lesson.questions)) {
+      lesson.questions.forEach((question, questionIndex) => {
+        const questionBox = document.createElement("div");
 
-      questionTitle.innerHTML = `<strong>${questionIndex + 1}.</strong> ${question.question}`;
+        questionBox.className = "question";
 
-      questionBox.appendChild(questionTitle);
+        const questionText = document.createElement("p");
 
-      const optionsBox = document.createElement("div");
+        questionText.className = "question-text";
 
-      optionsBox.className = "teil2-options";
+        questionText.textContent = question.question;
 
-      question.options.forEach((option, optionIndex) => {
-        const label = document.createElement("label");
+        questionBox.appendChild(questionText);
 
-        label.className = "teil2-option";
+        const optionsBox = document.createElement("div");
 
-        const radio = document.createElement("input");
+        optionsBox.className = "options";
 
-        radio.type = "radio";
+        if (Array.isArray(question.options)) {
+          question.options.forEach((option, optionIndex) => {
+            const label = document.createElement("label");
 
-        radio.name = `lesson-${lessonIndex}-question-${questionIndex}`;
+            label.className = "option";
 
-        radio.value = optionIndex;
+            const input = document.createElement("input");
 
-        radio.onchange = function () {
-          checkTeil2Answer(lessonIndex, questionIndex, optionIndex);
-        };
+            input.type = "radio";
 
-        const letter = document.createElement("span");
+            input.name = `lesen2-${lessonIndex}-${questionIndex}`;
 
-        letter.className = "option-letter";
+            input.value = optionIndex;
 
-        letter.textContent = String.fromCharCode(97 + optionIndex);
+            const letter = document.createElement("span");
 
-        const text = document.createElement("span");
+            letter.className = "option-letter";
 
-        text.textContent = option;
+            letter.textContent = String.fromCharCode(97 + optionIndex) + ")";
 
-        label.appendChild(radio);
+            const optionText = document.createElement("span");
 
-        label.appendChild(letter);
+            optionText.textContent = option;
 
-        label.appendChild(text);
+            label.appendChild(input);
+            label.appendChild(letter);
+            label.appendChild(optionText);
 
-        optionsBox.appendChild(label);
+            input.addEventListener("change", function () {
+              checkTeil2Answer(input, questionBox, question.correct);
+            });
+
+            optionsBox.appendChild(label);
+          });
+        }
+
+        questionBox.appendChild(optionsBox);
+
+        lessonBox.appendChild(questionBox);
       });
-
-      questionBox.appendChild(optionsBox);
-
-      const feedback = document.createElement("div");
-
-      feedback.className = "feedback";
-
-      feedback.id = `feedback2-${lessonIndex}-${questionIndex}`;
-
-      questionBox.appendChild(feedback);
-
-      lessonBox.appendChild(questionBox);
-    });
+    }
 
     container.appendChild(lessonBox);
   });
-
-  const result = document.getElementById("result2");
-
-  if (result) {
-    result.innerHTML = "";
-  }
-
-  if (typeof addTranslations === "function") {
-    addTranslations();
-  }
 }
 
-/* ============================================================
-   TEIL 2 - SOFORTIGE KONTROLLE
-============================================================ */
-
-function checkTeil2Answer(lessonIndex, questionIndex, selectedIndex) {
-  const question = lessons[lessonIndex].questions[questionIndex];
-
-  const questionBox = document.getElementById(
-    `teil2-question-${lessonIndex}-${questionIndex}`,
-  );
-
-  if (!questionBox) return;
-
-  const options = questionBox.querySelectorAll(".teil2-option");
+function checkTeil2Answer(input, questionBox, correctAnswer) {
+  const options = questionBox.querySelectorAll(".option");
 
   options.forEach((option) => {
     option.classList.remove(
@@ -483,48 +520,33 @@ function checkTeil2Answer(lessonIndex, questionIndex, selectedIndex) {
     );
   });
 
-  const selectedOption = options[selectedIndex];
+  const selectedLabel = input.closest(".option");
 
-  const correctOption = options[question.correct];
+  if (!selectedLabel) {
+    return;
+  }
 
-  const feedback = document.getElementById(
-    `feedback2-${lessonIndex}-${questionIndex}`,
-  );
+  const selectedAnswer = Number(input.value);
 
-  if (selectedIndex === question.correct) {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-correct");
-    }
+  const correct = Number(correctAnswer);
 
-    if (feedback) {
-      feedback.innerHTML = "✓ Richtig!";
-
-      feedback.className = "feedback feedback-correct";
-    }
+  if (selectedAnswer === correct) {
+    selectedLabel.classList.add("selected-correct");
   } else {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-wrong");
-    }
+    selectedLabel.classList.add("selected-wrong");
 
-    if (correctOption) {
-      correctOption.classList.add("correct-answer");
-    }
+    options.forEach((option) => {
+      const optionInput = option.querySelector("input");
 
-    if (feedback) {
-      feedback.innerHTML = `✗ Falsch. Die richtige Antwort ist <strong>${String.fromCharCode(97 + question.correct)}</strong>.`;
-
-      feedback.className = "feedback feedback-wrong";
-    }
+      if (optionInput && Number(optionInput.value) === correct) {
+        option.classList.add("correct-answer");
+      }
+    });
   }
 }
 
-/* ============================================================
-   TEIL 2 - GESAMTERGEBNIS
-============================================================ */
-
 function checkAll2() {
   let total = 0;
-
   let correct = 0;
 
   if (typeof lessons === "undefined" || !Array.isArray(lessons)) {
@@ -532,61 +554,43 @@ function checkAll2() {
   }
 
   lessons.forEach((lesson, lessonIndex) => {
+    if (!Array.isArray(lesson.questions)) {
+      return;
+    }
+
     lesson.questions.forEach((question, questionIndex) => {
       total++;
 
       const selected = document.querySelector(
-        `input[name="lesson-${lessonIndex}-question-${questionIndex}"]:checked`,
+        `input[name="lesen2-${lessonIndex}-${questionIndex}"]:checked`,
       );
 
-      if (selected && Number(selected.value) === question.correct) {
+      if (selected && Number(selected.value) === Number(question.correct)) {
         correct++;
       }
     });
   });
 
-  const result = document.getElementById("result2");
-
-  if (!result) return;
-
-  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-
-  result.innerHTML = `
-    <div class="final-result">
-
-      <h3>Ergebnis Lesen Teil 2</h3>
-
-      <p>
-        <strong>${correct} von ${total}</strong>
-        Antworten richtig
-      </p>
-
-      <p>${percent} %</p>
-
-    </div>
-  `;
-
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
+  showResult("result2", correct, total);
 }
 
-/* ============================================================
-   LESEN TEIL 3
-============================================================ */
+// ============================================================
+// LESEN TEIL 3
+// ============================================================
 
 function loadTest3() {
   const container = document.getElementById("test-container-3");
 
-  if (!container) return;
+  if (!container) {
+    return;
+  }
 
   container.innerHTML = "";
 
   if (typeof lesenTeil3 === "undefined" || !Array.isArray(lesenTeil3)) {
     container.innerHTML = `
       <div class="error-message">
-        Lesen Teil 3 konnte nicht geladen werden.
+        Die Daten für Lesen Teil 3 konnten nicht geladen werden.
       </div>
     `;
 
@@ -598,137 +602,147 @@ function loadTest3() {
 
     testBox.className = "teil3-test";
 
-    const header = document.createElement("div");
-
-    header.className = "test-header";
+    // --------------------------------------------------------
+    // TITEL
+    // --------------------------------------------------------
 
     const title = document.createElement("h2");
 
-    title.textContent = test.title || `Test ${testIndex + 1}`;
+    title.textContent = test.title;
 
-    header.appendChild(title);
+    testBox.appendChild(title);
 
-    testBox.appendChild(header);
+    // --------------------------------------------------------
+    // ANTWORTEN A-F
+    // --------------------------------------------------------
 
-    const responses = document.createElement("div");
+    if (test.responses && typeof test.responses === "object") {
+      const responsesTitle = document.createElement("h3");
 
-    responses.className = "forum-responses";
+      responsesTitle.textContent = "Antworten";
 
-    const responseTitle = document.createElement("h3");
+      testBox.appendChild(responsesTitle);
 
-    responseTitle.textContent = "Antworten";
+      const responsesBox = document.createElement("div");
 
-    responses.appendChild(responseTitle);
+      responsesBox.className = "teil3-responses";
 
-    Object.entries(test.responses).forEach(([letter, text]) => {
-      const response = document.createElement("div");
+      const letters = ["a", "b", "c", "d", "e", "f"];
 
-      response.className = "forum-answer";
+      letters.forEach((letter) => {
+        if (!test.responses[letter]) {
+          return;
+        }
 
-      response.innerHTML = `
-            <strong>${letter})</strong>
-            <span>${text}</span>
-          `;
+        const responseBox = document.createElement("div");
 
-      responses.appendChild(response);
-    });
+        responseBox.className = "teil3-response";
 
-    testBox.appendChild(responses);
+        const responseLetter = document.createElement("strong");
 
-    const questions = document.createElement("div");
+        responseLetter.className = "teil3-response-letter";
 
-    questions.className = "questions-part";
+        responseLetter.textContent = letter;
 
-    test.questions.forEach((question, questionIndex) => {
-      const questionBox = document.createElement("div");
+        const responseText = document.createElement("div");
 
-      questionBox.className = "teil3-question";
+        responseText.className = "teil3-response-text";
 
-      questionBox.id = `teil3-question-${testIndex}-${questionIndex}`;
+        responseText.style.whiteSpace = "pre-line";
 
-      const questionText = document.createElement("p");
+        responseText.textContent = String(test.responses[letter]).trim();
 
-      questionText.innerHTML = `
-            <strong>${question.number}.</strong>
-            ${question.text}
-          `;
+        responseBox.appendChild(responseLetter);
 
-      questionBox.appendChild(questionText);
+        responseBox.appendChild(responseText);
 
-      const options = document.createElement("div");
-
-      options.className = "teil3-options";
-
-      const answerOptions = ["a", "b", "c", "d", "e", "f", "X"];
-
-      answerOptions.forEach((letter) => {
-        const label = document.createElement("label");
-
-        label.className = "teil3-option";
-
-        const input = document.createElement("input");
-
-        input.type = "radio";
-
-        input.name = `teil3-${testIndex}-${questionIndex}`;
-
-        input.value = letter;
-
-        input.onchange = function () {
-          checkTeil3Answer(testIndex, questionIndex, letter);
-        };
-
-        const letterSpan = document.createElement("span");
-
-        letterSpan.className = "option-letter";
-
-        letterSpan.textContent = letter;
-
-        label.appendChild(input);
-
-        label.appendChild(letterSpan);
-
-        options.appendChild(label);
+        responsesBox.appendChild(responseBox);
       });
 
-      questionBox.appendChild(options);
+      testBox.appendChild(responsesBox);
+    }
 
-      const feedback = document.createElement("div");
+    // --------------------------------------------------------
+    // FRAGEN
+    // --------------------------------------------------------
 
-      feedback.className = "feedback";
+    if (Array.isArray(test.questions)) {
+      const questionsTitle = document.createElement("h3");
 
-      feedback.id = `feedback3-${testIndex}-${questionIndex}`;
+      questionsTitle.textContent = "Fragen";
 
-      questionBox.appendChild(feedback);
+      testBox.appendChild(questionsTitle);
 
-      questions.appendChild(questionBox);
-    });
+      const questionsBox = document.createElement("div");
 
-    testBox.appendChild(questions);
+      questionsBox.className = "teil3-questions";
+
+      test.questions.forEach((question, questionIndex) => {
+        const questionBox = document.createElement("div");
+
+        questionBox.className = "teil3-question";
+
+        const questionText = document.createElement("p");
+
+        const name = document.createElement("strong");
+
+        name.textContent = `${question.number}. ${question.name}: `;
+
+        questionText.appendChild(name);
+
+        questionText.appendChild(document.createTextNode(question.text));
+
+        questionBox.appendChild(questionText);
+
+        const optionsBox = document.createElement("div");
+
+        optionsBox.className = "teil3-options";
+
+        const letters = ["a", "b", "c", "d", "e", "f", "X"];
+
+        letters.forEach((letter) => {
+          const label = document.createElement("label");
+
+          label.className = "teil3-option";
+
+          const input = document.createElement("input");
+
+          input.type = "radio";
+
+          input.name = `lesen3-${testIndex}-${questionIndex}`;
+
+          input.value = letter;
+
+          const letterSpan = document.createElement("span");
+
+          letterSpan.className = "option-letter";
+
+          letterSpan.textContent = letter;
+
+          label.appendChild(input);
+
+          label.appendChild(letterSpan);
+
+          input.addEventListener("change", function () {
+            checkTeil3Answer(input, questionBox, question.correct);
+          });
+
+          optionsBox.appendChild(label);
+        });
+
+        questionBox.appendChild(optionsBox);
+
+        questionsBox.appendChild(questionBox);
+      });
+
+      testBox.appendChild(questionsBox);
+    }
 
     container.appendChild(testBox);
   });
-
-  const result = document.getElementById("result3");
-
-  if (result) {
-    result.innerHTML = "";
-  }
 }
 
-/* ============================================================
-   TEIL 3 - SOFORTIGE KONTROLLE
-============================================================ */
-
-function checkTeil3Answer(testIndex, questionIndex, selectedAnswer) {
-  const question = lesenTeil3[testIndex].questions[questionIndex];
-
-  const questionBox = document.getElementById(
-    `teil3-question-${testIndex}-${questionIndex}`,
-  );
-
-  if (!questionBox) return;
-
+function checkTeil3Answer(input, questionBox, correctAnswer) {
   const options = questionBox.querySelectorAll(".teil3-option");
 
   options.forEach((option) => {
@@ -739,62 +753,33 @@ function checkTeil3Answer(testIndex, questionIndex, selectedAnswer) {
     );
   });
 
-  let selectedOption = null;
+  const selectedLabel = input.closest(".teil3-option");
 
-  let correctOption = null;
+  if (!selectedLabel) {
+    return;
+  }
 
-  options.forEach((option) => {
-    const input = option.querySelector("input");
+  const selected = input.value.toLowerCase();
 
-    if (!input) return;
+  const correct = String(correctAnswer).toLowerCase();
 
-    if (input.value === selectedAnswer) {
-      selectedOption = option;
-    }
-
-    if (input.value === question.correct) {
-      correctOption = option;
-    }
-  });
-
-  const feedback = document.getElementById(
-    `feedback3-${testIndex}-${questionIndex}`,
-  );
-
-  if (selectedAnswer === question.correct) {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-correct");
-    }
-
-    if (feedback) {
-      feedback.innerHTML = "✓ Richtig!";
-
-      feedback.className = "feedback feedback-correct";
-    }
+  if (selected === correct) {
+    selectedLabel.classList.add("selected-correct");
   } else {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-wrong");
-    }
+    selectedLabel.classList.add("selected-wrong");
 
-    if (correctOption) {
-      correctOption.classList.add("correct-answer");
-    }
+    options.forEach((option) => {
+      const optionInput = option.querySelector("input");
 
-    if (feedback) {
-      feedback.innerHTML = `✗ Falsch. Die richtige Antwort ist <strong>${question.correct}</strong>.`;
-
-      feedback.className = "feedback feedback-wrong";
-    }
+      if (optionInput && optionInput.value.toLowerCase() === correct) {
+        option.classList.add("correct-answer");
+      }
+    });
   }
 }
 
-/* ============================================================
-   TEIL 3 - GESAMTERGEBNIS
-============================================================ */
-
 function checkAll3() {
   let total = 0;
-
   let correct = 0;
 
   if (typeof lesenTeil3 === "undefined" || !Array.isArray(lesenTeil3)) {
@@ -802,62 +787,46 @@ function checkAll3() {
   }
 
   lesenTeil3.forEach((test, testIndex) => {
+    if (!Array.isArray(test.questions)) {
+      return;
+    }
+
     test.questions.forEach((question, questionIndex) => {
       total++;
 
       const selected = document.querySelector(
-        `input[name="teil3-${testIndex}-${questionIndex}"]:checked`,
+        `input[name="lesen3-${testIndex}-${questionIndex}"]:checked`,
       );
 
-      if (selected && selected.value === question.correct) {
+      if (
+        selected &&
+        selected.value.toLowerCase() === String(question.correct).toLowerCase()
+      ) {
         correct++;
       }
     });
   });
 
-  const result = document.getElementById("result3");
-
-  if (!result) return;
-
-  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-
-  result.innerHTML = `
-    <div class="final-result">
-
-      <h3>Ergebnis Lesen Teil 3</h3>
-
-      <p>
-        <strong>${correct} von ${total}</strong>
-        Antworten richtig
-      </p>
-
-      <p>${percent} %</p>
-
-    </div>
-  `;
-
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
+  showResult("result3", correct, total);
 }
 
-/* ============================================================
-   LESEN TEIL 4
-   Цей блок працює з questions4.js
-============================================================ */
+// ============================================================
+// LESEN TEIL 4
+// ============================================================
 
 function loadTest4() {
   const container = document.getElementById("test-container-4");
 
-  if (!container) return;
+  if (!container) {
+    return;
+  }
 
   container.innerHTML = "";
 
   if (typeof lesenTeil4 === "undefined" || !Array.isArray(lesenTeil4)) {
     container.innerHTML = `
       <div class="error-message">
-        Lesen Teil 4 konnte nicht geladen werden.
+        Die Daten für Lesen Teil 4 konnten nicht geladen werden.
       </div>
     `;
 
@@ -869,119 +838,104 @@ function loadTest4() {
 
     testBox.className = "teil4-test";
 
+    // --------------------------------------------------------
+    // TITEL
+    // --------------------------------------------------------
+
     const title = document.createElement("h2");
 
-    title.textContent = test.title || `Test ${testIndex + 1}`;
+    title.textContent = test.title;
 
     testBox.appendChild(title);
+
+    // --------------------------------------------------------
+    // PROTOKOLL
+    // --------------------------------------------------------
 
     if (test.text) {
       const textBox = document.createElement("div");
 
       textBox.className = "text-box";
 
-      textBox.innerHTML = test.text.replace(/\n/g, "<br>");
+      textBox.style.whiteSpace = "pre-line";
+
+      textBox.textContent = String(test.text).trim();
 
       testBox.appendChild(textBox);
     }
 
-    test.questions.forEach((question, questionIndex) => {
-      const questionBox = document.createElement("div");
+    // --------------------------------------------------------
+    // FRAGEN
+    // --------------------------------------------------------
 
-      questionBox.className = "teil4-question";
+    if (Array.isArray(test.questions)) {
+      test.questions.forEach((question, questionIndex) => {
+        const questionBox = document.createElement("div");
 
-      questionBox.id = `teil4-question-${testIndex}-${questionIndex}`;
+        questionBox.className = "question";
 
-      /* =====================================================
-         ВИПРАВЛЕНО:
-         questions4.js не має question.number.
-         Номер беремо автоматично з індексу.
-      ===================================================== */
+        const questionText = document.createElement("p");
 
-      questionBox.innerHTML = `
-        <p>
-          <strong>${questionIndex + 1}.</strong>
-          ${question.question}
-        </p>
-      `;
+        questionText.className = "question-text";
 
-      const options = document.createElement("div");
+        questionText.textContent = question.question;
 
-      options.className = "teil4-options";
+        questionBox.appendChild(questionText);
 
-      question.options.forEach((option, optionIndex) => {
-        const label = document.createElement("label");
+        const optionsBox = document.createElement("div");
 
-        label.className = "teil4-option";
+        optionsBox.className = "options";
 
-        const input = document.createElement("input");
+        if (Array.isArray(question.options)) {
+          question.options.forEach((option, optionIndex) => {
+            const label = document.createElement("label");
 
-        input.type = "radio";
+            label.className = "option";
 
-        input.name = `teil4-${testIndex}-${questionIndex}`;
+            const input = document.createElement("input");
 
-        input.value = optionIndex;
+            input.type = "radio";
 
-        input.onchange = function () {
-          checkTeil4Answer(testIndex, questionIndex, optionIndex);
-        };
+            input.name = `lesen4-${testIndex}-${questionIndex}`;
 
-        const letter = document.createElement("span");
+            input.value = optionIndex;
 
-        letter.className = "option-letter";
+            const letter = document.createElement("span");
 
-        letter.textContent = String.fromCharCode(97 + optionIndex);
+            letter.className = "option-letter";
 
-        const text = document.createElement("span");
+            letter.textContent = String.fromCharCode(97 + optionIndex) + ")";
 
-        text.textContent = option;
+            const optionText = document.createElement("span");
 
-        label.appendChild(input);
+            optionText.textContent = option;
 
-        label.appendChild(letter);
+            label.appendChild(input);
 
-        label.appendChild(text);
+            label.appendChild(letter);
 
-        options.appendChild(label);
+            label.appendChild(optionText);
+
+            input.addEventListener("change", function () {
+              checkTeil4Answer(input, questionBox, question.correct);
+            });
+
+            optionsBox.appendChild(label);
+          });
+        }
+
+        questionBox.appendChild(optionsBox);
+
+        testBox.appendChild(questionBox);
       });
-
-      questionBox.appendChild(options);
-
-      const feedback = document.createElement("div");
-
-      feedback.className = "feedback";
-
-      feedback.id = `feedback4-${testIndex}-${questionIndex}`;
-
-      questionBox.appendChild(feedback);
-
-      testBox.appendChild(questionBox);
-    });
+    }
 
     container.appendChild(testBox);
   });
-
-  const result = document.getElementById("result4");
-
-  if (result) {
-    result.innerHTML = "";
-  }
 }
 
-/* ============================================================
-   TEIL 4 - SOFORTIGE KONTROLLE
-============================================================ */
-
-function checkTeil4Answer(testIndex, questionIndex, selectedIndex) {
-  const question = lesenTeil4[testIndex].questions[questionIndex];
-
-  const questionBox = document.getElementById(
-    `teil4-question-${testIndex}-${questionIndex}`,
-  );
-
-  if (!questionBox) return;
-
-  const options = questionBox.querySelectorAll(".teil4-option");
+function checkTeil4Answer(input, questionBox, correctAnswer) {
+  const options = questionBox.querySelectorAll(".option");
 
   options.forEach((option) => {
     option.classList.remove(
@@ -991,91 +945,70 @@ function checkTeil4Answer(testIndex, questionIndex, selectedIndex) {
     );
   });
 
-  const selectedOption = options[selectedIndex];
+  const selectedLabel = input.closest(".option");
 
-  const correctOption = options[question.correct];
+  if (!selectedLabel) {
+    return;
+  }
 
-  const feedback = document.getElementById(
-    `feedback4-${testIndex}-${questionIndex}`,
-  );
+  const selectedAnswer = Number(input.value);
 
-  if (selectedIndex === question.correct) {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-correct");
-    }
+  const correct = Number(correctAnswer);
 
-    if (feedback) {
-      feedback.innerHTML = "✓ Richtig!";
-
-      feedback.className = "feedback feedback-correct";
-    }
+  if (selectedAnswer === correct) {
+    selectedLabel.classList.add("selected-correct");
   } else {
-    if (selectedOption) {
-      selectedOption.classList.add("selected-wrong");
-    }
+    selectedLabel.classList.add("selected-wrong");
 
-    if (correctOption) {
-      correctOption.classList.add("correct-answer");
-    }
+    options.forEach((option) => {
+      const optionInput = option.querySelector("input");
 
-    if (feedback) {
-      feedback.innerHTML = `✗ Falsch. Die richtige Antwort ist <strong>${String.fromCharCode(97 + question.correct)}</strong>.`;
-
-      feedback.className = "feedback feedback-wrong";
-    }
+      if (optionInput && Number(optionInput.value) === correct) {
+        option.classList.add("correct-answer");
+      }
+    });
   }
 }
 
-/* ============================================================
-   TEIL 4 - GESAMTERGEBNIS
-============================================================ */
-
 function checkAll4() {
+  let total = 0;
+  let correct = 0;
+
   if (typeof lesenTeil4 === "undefined" || !Array.isArray(lesenTeil4)) {
     return;
   }
 
-  let total = 0;
-
-  let correct = 0;
-
   lesenTeil4.forEach((test, testIndex) => {
+    if (!Array.isArray(test.questions)) {
+      return;
+    }
+
     test.questions.forEach((question, questionIndex) => {
       total++;
 
       const selected = document.querySelector(
-        `input[name="teil4-${testIndex}-${questionIndex}"]:checked`,
+        `input[name="lesen4-${testIndex}-${questionIndex}"]:checked`,
       );
 
-      if (selected && Number(selected.value) === question.correct) {
+      if (selected && Number(selected.value) === Number(question.correct)) {
         correct++;
       }
     });
   });
 
-  const result = document.getElementById("result4");
-
-  if (!result) return;
-
-  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-
-  result.innerHTML = `
-    <div class="final-result">
-
-      <h3>Ergebnis Lesen Teil 4</h3>
-
-      <p>
-        <strong>${correct} von ${total}</strong>
-        Antworten richtig
-      </p>
-
-      <p>${percent} %</p>
-
-    </div>
-  `;
-
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
+  showResult("result4", correct, total);
 }
+
+// ============================================================
+// STARTSEITE
+// ============================================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  hideAllSections();
+
+  const menu = document.getElementById("menu");
+
+  if (menu) {
+    menu.classList.remove("hidden");
+  }
+});
