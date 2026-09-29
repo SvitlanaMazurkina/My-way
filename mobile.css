@@ -1,0 +1,421 @@
+```css
+/* ============================================================
+   B2 BERUF TRAINER
+   MOBILE.CSS
+
+   Wird NACH style.css geladen.
+   Desktop-CSS bleibt unverändert.
+   ============================================================ */
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 19px;
+  }
+
+  /* ----------------------------------------------------------
+     BUTTONS
+     ---------------------------------------------------------- */
+
+  button {
+    width: 100%;
+    max-width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+
+  /* ----------------------------------------------------------
+     ANWEISUNGEN
+     ---------------------------------------------------------- */
+
+  .instruction {
+    padding: 14px;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  /* ----------------------------------------------------------
+     TEST-BEREICHE
+     ---------------------------------------------------------- */
+
+  .teil1-test,
+  .teil3-test,
+  .teil4-test,
+  .lesson,
+  .hoeren1-test {
+    padding: 16px;
+    margin: 24px 0;
+  }
+
+  /* ----------------------------------------------------------
+     TEXTBOXEN
+     ---------------------------------------------------------- */
+
+  .teil1-texts,
+  .text-box {
+    padding: 15px;
+  }
+
+  /* ----------------------------------------------------------
+     ALLE ANTWORTEN UNTEREINANDER
+     ---------------------------------------------------------- */
+
+  .teil1-options,
+  .teil3-options,
+  .options,
+  .hoeren1-options {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .teil1-option,
+  .teil3-option,
+  .option,
+  .hoeren1-option {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ============================================================
+   SMARTPHONE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  /* ----------------------------------------------------------
+     HAUPT-CONTAINER
+     ---------------------------------------------------------- */
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 8px auto;
+    padding: 12px;
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ----------------------------------------------------------
+     ÜBERSCHRIFTEN
+     ---------------------------------------------------------- */
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  /* ----------------------------------------------------------
+     MENÜ
+     ---------------------------------------------------------- */
+
+  #menu h1 {
+    font-size: 25px;
+  }
+
+  #menu h2 {
+    margin-bottom: 24px;
+  }
+
+  #menu button {
+    margin: 10px auto;
+  }
+
+  /* ----------------------------------------------------------
+     BUTTONS
+     ---------------------------------------------------------- */
+
+  button {
+    width: 100%;
+    max-width: none;
+    min-height: 46px;
+    margin: 10px auto;
+    padding: 12px 10px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  /* ----------------------------------------------------------
+     ANWEISUNG
+     ---------------------------------------------------------- */
+
+  .instruction {
+    padding: 12px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* ----------------------------------------------------------
+     TEST-BOXEN
+     ---------------------------------------------------------- */
+
+  .teil1-test,
+  .teil3-test,
+  .teil4-test,
+  .lesson,
+  .hoeren1-test {
+    width: 100%;
+    padding: 11px;
+    margin: 18px 0;
+    border-radius: 8px;
+  }
+
+  /* ----------------------------------------------------------
+     TEIL 1
+     ---------------------------------------------------------- */
+
+  .teil1-texts {
+    padding: 11px;
+    margin: 15px 0;
+  }
+
+  .teil1-text {
+    gap: 8px;
+    margin: 11px 0;
+    line-height: 1.55;
+  }
+
+  .teil1-text-letter {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .teil1-question {
+    padding: 11px;
+    margin: 14px 0;
+  }
+
+  .teil1-option {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  /* ----------------------------------------------------------
+     TEIL 2
+     ---------------------------------------------------------- */
+
+  .text-box {
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .question {
+    padding: 11px;
+    margin: 14px 0;
+  }
+
+  .question-text {
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .option {
+    padding: 10px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  /* ----------------------------------------------------------
+     TEIL 3
+     ---------------------------------------------------------- */
+
+  .teil3-response {
+    gap: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+
+  .teil3-response-letter {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .teil3-question {
+    padding: 11px;
+    margin: 14px 0;
+  }
+
+  .teil3-option {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  /* ----------------------------------------------------------
+     TEIL 4
+     ---------------------------------------------------------- */
+
+  .teil4-test .text-box {
+    margin-bottom: 16px;
+  }
+
+  /* ----------------------------------------------------------
+     HÖREN TEIL 1
+     ---------------------------------------------------------- */
+
+  .hoeren1-test {
+    padding: 11px;
+    margin: 18px 0;
+  }
+
+  .hoeren1-question {
+    padding: 11px;
+    margin: 14px 0;
+  }
+
+  .hoeren1-options {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 9px !important;
+    width: 100% !important;
+  }
+
+  .hoeren1-option {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .hoeren1-option input {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 3px 10px 0 0;
+  }
+
+  .hoeren1-option span {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* ----------------------------------------------------------
+     ERGEBNIS
+     ---------------------------------------------------------- */
+
+  .result-box,
+  .final-result {
+    padding: 15px;
+    margin: 20px 0;
+  }
+
+  .result-box p,
+  .final-result p {
+    font-size: 16px;
+  }
+}
+
+/* ============================================================
+   SEHR KLEINE SMARTPHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+  body {
+    padding: 3px;
+  }
+  .container {
+    padding: 9px;
+    margin: 6px auto;
+  }
+  h1 {
+    font-size: 21px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  button {
+    min-height: 44px;
+    padding: 10px 8px;
+    font-size: 15px;
+  }
+  .instruction {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .teil1-test,
+  .teil3-test,
+  .teil4-test,
+  .lesson,
+  .hoeren1-test {
+    padding: 9px;
+  }
+  .teil1-question,
+  .question,
+  .teil3-question,
+  .hoeren1-question {
+    padding: 9px;
+  }
+  .teil1-option,
+  .teil3-option,
+  .option,
+  .hoeren1-option {
+    padding: 9px;
+    font-size: 14px;
+  }
+  .text-box {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
