@@ -1,9 +1,7 @@
-```css
 /* ============================================================
    B2 BERUF TRAINER
    STYLE.CSS
    ============================================================ */
-
 
 /* ============================================================
    GRUNDSTIL
@@ -75,18 +73,13 @@ button {
   max-width: 400px;
   margin: 15px auto;
   padding: 12px 16px;
-
   font-size: 16px;
   line-height: 1.4;
-
   cursor: pointer;
-
   border-radius: 8px;
   border: none;
-
   background: #e8e8e8;
   color: #222;
-
   transition:
     background 0.2s ease,
     opacity 0.2s ease,
@@ -141,12 +134,9 @@ button:disabled {
 .error-message {
   padding: 15px;
   margin: 20px 0;
-
   background: #ffe5e5;
-
   border: 1px solid #e00000;
   border-radius: 8px;
-
   color: #a00000;
 }
 
@@ -157,22 +147,23 @@ button:disabled {
 .teil1-test,
 .teil3-test,
 .teil4-test,
-.lesson {
+.lesson,
+.hoeren1-test,
+.hoeren2-test {
   width: 100%;
-
   margin: 35px 0;
   padding: 20px;
-
   border: 1px solid #ddd;
   border-radius: 10px;
-
   background: #ffffff;
 }
 
 .teil1-test > h2,
 .teil3-test > h2,
 .teil4-test > h2,
-.lesson > h2 {
+.lesson > h2,
+.hoeren1-test > h2,
+.hoeren2-test > h2 {
   margin-top: 0;
   overflow-wrap: anywhere;
 }
@@ -183,52 +174,36 @@ button:disabled {
 
 .teil1-texts {
   width: 100%;
-
   background: #eeeeee;
-
   padding: 20px;
-
   border-radius: 8px;
-
   margin: 20px 0;
 }
 
 .teil1-text {
   display: flex;
   align-items: flex-start;
-
   gap: 12px;
-
   margin: 15px 0;
-
   line-height: 1.6;
-
   min-width: 0;
 }
 
 .teil1-text-letter {
   flex: 0 0 30px;
-
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   width: 30px;
   height: 30px;
-
   background: #ffffff;
-
   border-radius: 50%;
-
   text-transform: lowercase;
 }
 
 .teil1-text-content {
   flex: 1;
-
   min-width: 0;
-
   overflow-wrap: anywhere;
   word-break: normal;
 }
@@ -239,80 +214,16 @@ button:disabled {
 
 .teil1-question {
   width: 100%;
-
   margin: 20px 0;
   padding: 18px;
-
   border: 1px solid #ddd;
   border-radius: 8px;
-
   background: #fafafa;
 }
 
 .teil1-question p {
   margin-top: 0;
-
   overflow-wrap: anywhere;
-}
-
-/* ============================================================
-   LESEN TEIL 1
-   ANTWORTEN IMMER UNTEREINANDER
-   ============================================================ */
-
-.teil1-options {
-  display: flex !important;
-
-  flex-direction: column !important;
-
-  align-items: stretch !important;
-
-  gap: 10px;
-
-  width: 100%;
-}
-
-.teil1-option {
-  display: flex !important;
-
-  flex-direction: row;
-
-  align-items: center;
-
-  justify-content: flex-start;
-
-  width: 100% !important;
-
-  min-width: 0;
-
-  gap: 10px;
-
-  padding: 11px;
-
-  border: 1px solid #ddd;
-  border-radius: 7px;
-
-  background: #ffffff;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.teil1-option:hover {
-  background: #f0f0f0;
-}
-
-.teil1-option input {
-  flex: 0 0 auto;
-
-  margin: 0;
-}
-
-.teil1-option .option-letter {
-  font-weight: bold;
 }
 
 /* ============================================================
@@ -325,107 +236,30 @@ button:disabled {
 
 .text-box {
   width: 100%;
-
   padding: 20px;
-
   margin: 20px 0;
-
   background: #f8f8f8;
-
   border-left: 4px solid #ddd;
-
   border-radius: 6px;
-
   line-height: 1.7;
-
   overflow-wrap: anywhere;
   word-break: normal;
 }
 
 .question {
   width: 100%;
-
   margin: 20px 0;
-
   padding: 18px;
-
   border: 1px solid #ddd;
   border-radius: 8px;
-
   background: #fafafa;
 }
 
 .question-text {
   margin-top: 0;
   margin-bottom: 15px;
-
   font-weight: 500;
-
   overflow-wrap: anywhere;
-}
-
-/* ============================================================
-   LESEN TEIL 2
-   ANTWORTEN IMMER UNTEREINANDER
-   ============================================================ */
-
-.options {
-  display: flex !important;
-
-  flex-direction: column !important;
-
-  align-items: stretch !important;
-
-  gap: 10px;
-
-  width: 100%;
-}
-
-.option {
-  display: flex !important;
-
-  flex-direction: row;
-
-  align-items: flex-start;
-
-  gap: 10px;
-
-  width: 100% !important;
-
-  padding: 12px;
-
-  border: 1px solid #ddd;
-  border-radius: 7px;
-
-  background: #ffffff;
-
-  cursor: pointer;
-
-  line-height: 1.5;
-
-  overflow-wrap: anywhere;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.option:hover {
-  background: #f0f0f0;
-}
-
-.option input {
-  flex: 0 0 auto;
-
-  margin-top: 4px;
-}
-
-.option-letter {
-  flex: 0 0 auto;
-
-  min-width: 22px;
-
-  font-weight: bold;
 }
 
 /* ============================================================
@@ -434,57 +268,38 @@ button:disabled {
 
 .teil3-responses {
   width: 100%;
-
   margin: 20px 0 30px;
 }
 
 .teil3-response {
   display: flex;
-
   align-items: flex-start;
-
   gap: 12px;
-
   width: 100%;
-
   margin: 12px 0;
-
   padding: 14px;
-
   background: #f8f8f8;
-
   border-radius: 7px;
-
   border: 1px solid #e0e0e0;
-
   line-height: 1.6;
-
   min-width: 0;
 }
 
 .teil3-response-letter {
   flex: 0 0 30px;
-
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   width: 30px;
   height: 30px;
-
   background: #ffffff;
-
   border-radius: 50%;
-
   text-transform: lowercase;
 }
 
 .teil3-response-text {
   flex: 1;
-
   min-width: 0;
-
   overflow-wrap: anywhere;
 }
 
@@ -494,78 +309,41 @@ button:disabled {
 
 .teil3-question {
   width: 100%;
-
   margin: 20px 0;
-
   padding: 18px;
-
   border: 1px solid #ddd;
   border-radius: 8px;
-
   background: #fafafa;
 }
 
 .teil3-question p {
   margin-top: 0;
-
   overflow-wrap: anywhere;
 }
 
 /* ============================================================
-   LESEN TEIL 3
-   ANTWORTEN IMMER UNTEREINANDER
+   LESEN TEIL 4
    ============================================================ */
 
-.teil3-options {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  gap: 10px;
-  width: 100%;
-}
-.teil3-option {
-  display: flex !important;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  width: 100% !important;
-  min-width: 0;
-  padding: 11px;
-  border: 1px solid #ddd;
-  border-radius: 7px;
-  background: #ffffff;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-.teil3-option:hover {
-  background: #f0f0f0;
-}
-.teil3-option input {
-  flex: 0 0 auto;
-  margin: 0;
-} /* ============================================================ LESEN TEIL 4 ============================================================ */
 .teil4-test {
   margin-bottom: 35px;
 }
+
 .teil4-test .text-box {
   margin-bottom: 25px;
-} /* ============================================================ HÖREN TEIL 1 ============================================================ */
-#test-container-hoeren1 {
+}
+
+/* ============================================================
+   HÖREN TEIL 1 + TEIL 2
+   ============================================================ */
+
+#test-container-hoeren1,
+#test-container-hoeren2 {
   width: 100%;
 }
-.hoeren1-test {
-  width: 100%;
-  margin: 30px 0;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #ffffff;
-  box-sizing: border-box;
-}
-.hoeren1-question {
+
+.hoeren1-question,
+.hoeren2-question {
   width: 100%;
   margin: 18px 0;
   padding: 18px;
@@ -574,80 +352,262 @@ button:disabled {
   background: #fafafa;
   box-sizing: border-box;
 }
-.hoeren1-question p {
+
+.hoeren1-question p,
+.hoeren2-question p {
   margin-top: 0;
   overflow-wrap: anywhere;
-} /* ============================================================ HÖREN TEIL 1 ANTWORTEN — IMMER ОДНА ПІД ОДНОЮ ============================================================ */
-.hoeren1-options {
+}
+
+/* ============================================================
+   HÖREN TEIL 2
+   ============================================================ */
+
+.hoeren2-answers {
+  width: 100%;
+  margin: 20px 0 30px;
+  padding: 18px;
+  background: #f0f4f8;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.hoeren2-answer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin: 12px 0;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.hoeren2-answer-letter {
+  flex: 0 0 25px;
+}
+
+.hoeren2-questions {
+  width: 100%;
+}
+
+.hoeren2-question-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 17px;
+}
+
+.hoeren2-dialogue {
+  width: 100%;
+  padding: 18px;
+  margin-bottom: 18px;
+  background: #ffffff;
+  border-left: 4px solid #ddd;
+  border-radius: 6px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   UNIVERSAL ANSWER SYSTEM
+   ============================================================
+
+   ВАЖЛИВО:
+
+   УСІ ВІДПОВІДІ НА САЙТІ ЙДУТЬ В ОДИН СТОВПЧИК.
+
+   Сюди входять:
+   - Lesen Teil 1
+   - Lesen Teil 2
+   - Lesen Teil 3
+   - Lesen Teil 4
+   - Hören Teil 1
+   - Hören Teil 2
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   CONTAINER DER ANTWORTEN
+   ------------------------------------------------------------ */
+
+.answer-options,
+.teil1-options,
+.options,
+.teil3-options,
+.hoeren1-options,
+.hoeren2-options {
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
   justify-content: flex-start !important;
   gap: 10px !important;
   width: 100% !important;
+  max-width: 100% !important;
   box-sizing: border-box;
 }
-.hoeren1-option {
+
+/* ------------------------------------------------------------
+   EINZELNE ANTWORT
+   ------------------------------------------------------------ */
+
+.answer-option,
+.teil1-option,
+.option,
+.teil3-option,
+.hoeren1-option,
+.hoeren2-option {
   display: flex !important;
   flex-direction: row !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
+
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
-  padding: 12px;
+
+  padding: 11px;
   gap: 10px;
+
   border: 1px solid #ddd;
   border-radius: 7px;
+
   background: #ffffff;
+
   cursor: pointer;
+
   line-height: 1.5;
+
   overflow-wrap: anywhere;
+  word-break: normal;
+
   box-sizing: border-box;
+
   transition:
     background 0.2s ease,
     border-color 0.2s ease;
 }
-.hoeren1-option:hover {
+
+/* ------------------------------------------------------------
+   HOVER
+   ------------------------------------------------------------ */
+
+.answer-option:hover,
+.teil1-option:hover,
+.option:hover,
+.teil3-option:hover,
+.hoeren1-option:hover,
+.hoeren2-option:hover {
   background: #f0f0f0;
 }
-.hoeren1-option input {
+
+/* ------------------------------------------------------------
+   RADIO
+   ------------------------------------------------------------ */
+
+.answer-option input,
+.teil1-option input,
+.option input,
+.teil3-option input,
+.hoeren1-option input,
+.hoeren2-option input {
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
-  margin: 4px 0 0 0;
+  margin: 3px 0 0 0;
   cursor: pointer;
 }
-.hoeren1-option span {
+
+/* ------------------------------------------------------------
+   TEXT IN DER ANTWORT
+   ------------------------------------------------------------ */
+
+.answer-option span,
+.teil1-option span,
+.option span,
+.teil3-option span,
+.hoeren1-option span,
+.hoeren2-option span {
   flex: 1 1 auto;
   min-width: 0;
   overflow-wrap: anywhere;
-} /* ============================================================ HÖREN FEEDBACK ============================================================ */
-.hoeren1-option.correct {
-  background: #d9f7df !important;
-  border-color: #2e9b4f !important;
-  color: #155c2a;
+  word-break: normal;
 }
-.hoeren1-option.wrong {
-  background: #ffdede !important;
-  border-color: #d93030 !important;
-  color: #8a1515;
-} /* ============================================================ SOFORTIGE ANTWORT-KONTROLLE ANDERE TEILE ============================================================ */
-.selected-correct {
-  background: #d9f7df !important;
-  border-color: #2e9b4f !important;
-  color: #155c2a;
+
+/* ------------------------------------------------------------
+   BUCHSTABEN
+   ------------------------------------------------------------ */
+
+.answer-option .option-letter,
+.answer-option .answer-letter,
+.teil1-option .option-letter,
+.option .option-letter,
+.teil3-option .option-letter,
+.hoeren1-option .option-letter,
+.hoeren2-option .option-letter {
+  flex: 0 0 auto;
+  min-width: 22px;
+  font-weight: bold;
 }
-.selected-wrong {
-  background: #ffdede !important;
-  border-color: #d93030 !important;
-  color: #8a1515;
-}
+
+/* ============================================================
+   UNIVERSAL FEEDBACK
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   RICHTIG
+   ------------------------------------------------------------ */
+
+.answer-option.correct,
+.answer-option.selected-correct,
+.answer-option.correct-answer,
+.teil1-option.correct,
+.teil1-option.selected-correct,
+.teil1-option.correct-answer,
+.option.correct,
+.option.selected-correct,
+.option.correct-answer,
+.teil3-option.correct,
+.teil3-option.selected-correct,
+.teil3-option.correct-answer,
+.hoeren1-option.correct,
+.hoeren1-option.selected-correct,
+.hoeren1-option.correct-answer,
+.hoeren2-option.correct,
+.hoeren2-option.selected-correct,
+.hoeren2-option.correct-answer,
+.selected-correct,
 .correct-answer {
   background: #d9f7df !important;
   border-color: #2e9b4f !important;
-  color: #155c2a;
-} /* ============================================================ ERGEBNIS ============================================================ */
+  color: #155c2a !important;
+}
+
+/* ------------------------------------------------------------
+   FALSCH
+   ------------------------------------------------------------ */
+
+.answer-option.wrong,
+.answer-option.selected-wrong,
+.teil1-option.wrong,
+.teil1-option.selected-wrong,
+.option.wrong,
+.option.selected-wrong,
+.teil3-option.wrong,
+.teil3-option.selected-wrong,
+.hoeren1-option.wrong,
+.hoeren1-option.selected-wrong,
+.hoeren2-option.wrong,
+.hoeren2-option.selected-wrong,
+.selected-wrong {
+  background: #ffdede !important;
+  border-color: #d93030 !important;
+  color: #8a1515 !important;
+}
+
+/* ============================================================
+   ERGEBNIS
+   ============================================================ */
+
 .result-box,
 .final-result {
   margin: 30px 0;
@@ -657,264 +617,349 @@ button:disabled {
   border: 1px solid #d6dde5;
   border-radius: 10px;
 }
+
 .result-box h2,
 .final-result h2 {
   margin-top: 0;
 }
+
 .result-box p,
 .final-result p {
   margin: 8px 0;
   font-size: 18px;
-} /* ============================================================ RADIO BUTTONS ============================================================ */
+}
+
+/* ============================================================
+   RADIO BUTTONS
+   ============================================================ */
+
 input[type="radio"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
-} /* ============================================================ TEXTUMBRUCH ============================================================ */
+}
+
+/* ============================================================
+   TEXTUMBRUCH
+   ============================================================ */
+
 p,
 div,
 span,
 label {
   max-width: 100%;
 }
+
 p,
 .text-box,
 .teil1-text-content,
-.teil3-response-text {
+.teil3-response-text,
+.hoeren2-dialogue {
   overflow-wrap: anywhere;
-} /* ============================================================ TABLET ============================================================ */
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
 @media (max-width: 768px) {
   body {
     padding: 12px;
   }
+
   .container {
     margin: 20px auto;
     padding: 22px;
     border-radius: 8px;
   }
+
   h1 {
     font-size: 28px;
   }
+
   h2 {
     font-size: 23px;
   }
+
   h3 {
     font-size: 19px;
-  } /* ========================================================== TEST-BOXEN ========================================================== */
+  }
+
   .teil1-test,
   .teil3-test,
   .teil4-test,
-  .lesson {
+  .lesson,
+  .hoeren1-test,
+  .hoeren2-test {
     padding: 16px;
     margin: 25px 0;
   }
+
   .teil1-texts,
   .text-box {
     padding: 16px;
-  } /* ========================================================== ВСІ ВІДПОВІДІ — ОДНА ПІД ОДНОЮ ========================================================== */
+  }
+
+  .answer-options,
   .teil1-options,
-  .teil3-options,
   .options,
-  .hoeren1-options {
+  .teil3-options,
+  .hoeren1-options,
+  .hoeren2-options {
     display: flex !important;
     flex-direction: column !important;
-    align-items: stretch !important;
     width: 100% !important;
   }
+
+  .answer-option,
   .teil1-option,
-  .teil3-option,
   .option,
-  .hoeren1-option {
+  .teil3-option,
+  .hoeren1-option,
+  .hoeren2-option {
     width: 100% !important;
     max-width: 100% !important;
   }
-} /* ============================================================ SMARTPHONE ============================================================ */
+}
+
+/* ============================================================
+   SMARTPHONE
+   ============================================================ */
+
 @media (max-width: 600px) {
   body {
     padding: 8px;
     font-size: 16px;
   }
+
   .container {
     width: 100%;
     margin: 10px auto;
     padding: 15px;
     border-radius: 7px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  } /* ========================================================== ÜBERSCHRIFTEN ========================================================== */
+  }
+
   h1 {
     font-size: 25px;
     line-height: 1.25;
   }
+
   h2 {
     font-size: 21px;
     line-height: 1.3;
   }
+
   h3 {
     font-size: 18px;
     line-height: 1.35;
-  } /* ========================================================== BUTTONS ========================================================== */
+  }
+
   button {
     width: 100%;
     max-width: none;
     padding: 13px 12px;
     margin: 12px auto;
     font-size: 16px;
-  } /* ========================================================== INSTRUCTION ========================================================== */
+  }
+
   .instruction {
     padding: 12px;
     line-height: 1.5;
-  } /* ========================================================== TEST-BOXEN ========================================================== */
+  }
+
   .teil1-test,
   .teil3-test,
   .teil4-test,
-  .lesson {
+  .lesson,
+  .hoeren1-test,
+  .hoeren2-test {
     padding: 12px;
     margin: 20px 0;
-  } /* ========================================================== LESEN 1 ========================================================== */
+  }
+
   .teil1-texts {
     padding: 12px;
   }
+
   .teil1-text {
     gap: 8px;
     margin: 12px 0;
     line-height: 1.55;
   }
+
   .teil1-text-letter {
     flex: 0 0 28px;
     width: 28px;
     height: 28px;
   }
+
   .teil1-question {
     padding: 12px;
     margin: 15px 0;
   }
-  .teil1-option {
-    padding: 10px;
-    font-size: 15px;
-  } /* ========================================================== LESEN 2 ========================================================== */
+
   .text-box {
     padding: 13px;
     line-height: 1.6;
     font-size: 15px;
   }
+
   .question {
     padding: 12px;
     margin: 15px 0;
   }
+
   .question-text {
     line-height: 1.5;
   }
-  .option {
-    padding: 10px;
-    font-size: 15px;
-  } /* ========================================================== LESEN 3 ========================================================== */
+
   .teil3-response {
     gap: 8px;
     padding: 11px;
     line-height: 1.5;
   }
+
   .teil3-response-letter {
     flex: 0 0 28px;
     width: 28px;
     height: 28px;
   }
+
   .teil3-question {
     padding: 12px;
     margin: 15px 0;
   }
-  .teil3-option {
-    padding: 10px;
-    font-size: 15px;
-  } /* ========================================================== LESEN 4 ========================================================== */
+
   .teil4-test .text-box {
     margin-bottom: 18px;
-  } /* ========================================================== HÖREN ========================================================== */
-  .hoeren1-test {
-    width: 100%;
-    padding: 12px;
-    margin: 20px 0;
   }
-  .hoeren1-question {
-    width: 100%;
+
+  .hoeren1-question,
+  .hoeren2-question {
     padding: 12px;
     margin: 15px 0;
-  } /* ========================================================== HÖREN — ВІДПОВІДІ ЗАВЖДИ ОДНИМ СТОВПЧИКОМ ========================================================== */
-  .hoeren1-options {
+  }
+
+  .hoeren2-answers {
+    padding: 12px;
+  }
+
+  .hoeren2-dialogue {
+    padding: 13px;
+    line-height: 1.6;
+  }
+
+  .hoeren2-question-title {
+    font-size: 16px;
+  }
+
+  /* ----------------------------------------------------------
+     UNIVERSAL ANSWERS MOBILE
+     ---------------------------------------------------------- */
+
+  .answer-options,
+  .teil1-options,
+  .options,
+  .teil3-options,
+  .hoeren1-options,
+  .hoeren2-options {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     justify-content: flex-start !important;
-    gap: 10px !important;
+    gap: 9px !important;
     width: 100% !important;
   }
-  .hoeren1-option {
+
+  .answer-option,
+  .teil1-option,
+  .option,
+  .teil3-option,
+  .hoeren1-option,
+  .hoeren2-option {
     display: flex !important;
     flex-direction: row !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
+
     width: 100% !important;
     max-width: 100% !important;
+
     padding: 10px;
+    gap: 10px;
+
     font-size: 15px;
+    line-height: 1.45;
+
     box-sizing: border-box;
   }
-  .hoeren1-option input {
+
+  .answer-option input,
+  .teil1-option input,
+  .option input,
+  .teil3-option input,
+  .hoeren1-option input,
+  .hoeren2-option input {
     flex: 0 0 auto;
     width: 18px;
     height: 18px;
-    margin: 3px 10px 0 0;
+    margin: 3px 0 0 0;
   }
-  .hoeren1-option span {
-    flex: 1 1 auto;
-    min-width: 0;
-  } /* ========================================================== HÖREN FEEDBACK ========================================================== */
-  .hoeren1-option.correct {
-    background: #d4edda !important;
-    border-color: #28a745 !important;
-  }
-  .hoeren1-option.wrong {
-    background: #f8d7da !important;
-    border-color: #dc3545 !important;
-  } /* ========================================================== ERGEBNIS ========================================================== */
+
   .result-box,
   .final-result {
     padding: 17px;
     margin: 22px 0;
   }
+
   .result-box p,
   .final-result p {
     font-size: 17px;
   }
-} /* ============================================================ SEHR KLEINE SMARTPHONES ============================================================ */
+}
+
+/* ============================================================
+   SEHR KLEINE SMARTPHONES
+   ============================================================ */
+
 @media (max-width: 380px) {
   body {
     padding: 5px;
   }
+
   .container {
     padding: 11px;
   }
+
   h1 {
     font-size: 22px;
   }
+
   h2 {
     font-size: 19px;
   }
+
   h3 {
     font-size: 17px;
   }
+
   .teil1-test,
   .teil3-test,
   .teil4-test,
-  .lesson {
+  .lesson,
+  .hoeren1-test,
+  .hoeren2-test {
     padding: 10px;
   }
+
+  .answer-option,
   .teil1-option,
-  .teil3-option,
   .option,
-  .hoeren1-option {
-    font-size: 14px;
-  }
-  .hoeren1-option {
+  .teil3-option,
+  .hoeren1-option,
+  .hoeren2-option {
     padding: 9px;
+    font-size: 14px;
   }
 }

@@ -4,11 +4,19 @@
 // ============================================================
 
 // ============================================================
-// НАВІГАЦІЯ
+// NAVIGATION
 // ============================================================
 
 function hideAllSections() {
-  const sections = ["menu", "lesen1", "lesen2", "lesen3", "lesen4", "hoeren1"];
+  const sections = [
+    "menu",
+    "lesen1",
+    "lesen2",
+    "lesen3",
+    "lesen4",
+    "hoeren1",
+    "hoeren2",
+  ];
 
   sections.forEach((id) => {
     const element = document.getElementById(id);
@@ -18,6 +26,10 @@ function hideAllSections() {
     }
   });
 }
+
+// ============================================================
+// MENÜ
+// ============================================================
 
 function backMenu() {
   hideAllSections();
@@ -34,6 +46,10 @@ function backMenu() {
   });
 }
 
+// ============================================================
+// LESEN TEIL 1
+// ============================================================
+
 function startLesen1() {
   hideAllSections();
 
@@ -43,13 +59,19 @@ function startLesen1() {
     section.classList.remove("hidden");
   }
 
-  loadTest1();
+  if (typeof loadTest1 === "function") {
+    loadTest1();
+  }
 
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
 }
+
+// ============================================================
+// LESEN TEIL 2
+// ============================================================
 
 function startLesen2() {
   hideAllSections();
@@ -60,13 +82,19 @@ function startLesen2() {
     section.classList.remove("hidden");
   }
 
-  loadTest2();
+  if (typeof loadTest2 === "function") {
+    loadTest2();
+  }
 
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
 }
+
+// ============================================================
+// LESEN TEIL 3
+// ============================================================
 
 function startLesen3() {
   hideAllSections();
@@ -77,13 +105,19 @@ function startLesen3() {
     section.classList.remove("hidden");
   }
 
-  loadTest3();
+  if (typeof loadTest3 === "function") {
+    loadTest3();
+  }
 
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
 }
+
+// ============================================================
+// LESEN TEIL 4
+// ============================================================
 
 function startLesen4() {
   hideAllSections();
@@ -94,13 +128,19 @@ function startLesen4() {
     section.classList.remove("hidden");
   }
 
-  loadTest4();
+  if (typeof loadTest4 === "function") {
+    loadTest4();
+  }
 
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
 }
+
+// ============================================================
+// HÖREN TEIL 1
+// ============================================================
 
 function startHoeren1() {
   hideAllSections();
@@ -111,9 +151,31 @@ function startHoeren1() {
     section.classList.remove("hidden");
   }
 
-  // Diese Funktion kommt aus hoeren.js
   if (typeof loadHoeren1 === "function") {
     loadHoeren1();
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+// ============================================================
+// HÖREN TEIL 2
+// ============================================================
+
+function startHoeren2() {
+  hideAllSections();
+
+  const section = document.getElementById("hoeren2");
+
+  if (section) {
+    section.classList.remove("hidden");
+  }
+
+  if (typeof loadHoeren2 === "function") {
+    loadHoeren2();
   }
 
   window.scrollTo({
@@ -148,9 +210,11 @@ function showResult(resultId, correct, total) {
   result.innerHTML = `
     <div class="result-box">
       <h2>Ergebnis</h2>
+
       <p>
         <strong>${correct} von ${total}</strong> richtig
       </p>
+
       <p>
         <strong>${percentage}%</strong>
       </p>
@@ -230,7 +294,6 @@ function loadTest1() {
         textContent.className = "teil1-text-content";
 
         textContent.style.whiteSpace = "pre-line";
-
         textContent.textContent = String(test.texts[letter]).trim();
 
         textBox.appendChild(textLetter);
@@ -272,16 +335,20 @@ function loadTest1() {
 
         questionBox.appendChild(questionText);
 
+        // ----------------------------------------------------
+        // ANTWORTEN
+        // ----------------------------------------------------
+
         const optionsBox = document.createElement("div");
 
-        optionsBox.className = "teil1-options";
+        optionsBox.className = "answer-options teil1-options";
 
         const letters = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
         letters.forEach((letter) => {
           const label = document.createElement("label");
 
-          label.className = "teil1-option";
+          label.className = "answer-option teil1-option";
 
           const input = document.createElement("input");
 
@@ -308,7 +375,6 @@ function loadTest1() {
         });
 
         questionBox.appendChild(optionsBox);
-
         situationsBox.appendChild(questionBox);
       });
 
@@ -318,6 +384,10 @@ function loadTest1() {
     container.appendChild(testBox);
   });
 }
+
+// ============================================================
+// LESEN TEIL 1 – SOFORTIGE KONTROLLE
+// ============================================================
 
 function checkTeil1Answer(input, questionBox, correctAnswer) {
   const options = questionBox.querySelectorAll(".teil1-option");
@@ -336,7 +406,7 @@ function checkTeil1Answer(input, questionBox, correctAnswer) {
     return;
   }
 
-  const selected = input.value.toLowerCase();
+  const selected = String(input.value).toLowerCase();
 
   const correct = String(correctAnswer).toLowerCase();
 
@@ -348,12 +418,16 @@ function checkTeil1Answer(input, questionBox, correctAnswer) {
     options.forEach((option) => {
       const optionInput = option.querySelector("input");
 
-      if (optionInput && optionInput.value.toLowerCase() === correct) {
+      if (optionInput && String(optionInput.value).toLowerCase() === correct) {
         option.classList.add("correct-answer");
       }
     });
   }
 }
+
+// ============================================================
+// LESEN TEIL 1 – GESAMTERGEBNIS
+// ============================================================
 
 function checkAll1() {
   let total = 0;
@@ -459,15 +533,19 @@ function loadTest2() {
 
         questionBox.appendChild(questionText);
 
+        // --------------------------------------------------
+        // ANTWORTEN
+        // --------------------------------------------------
+
         const optionsBox = document.createElement("div");
 
-        optionsBox.className = "options";
+        optionsBox.className = "answer-options options";
 
         if (Array.isArray(question.options)) {
           question.options.forEach((option, optionIndex) => {
             const label = document.createElement("label");
 
-            label.className = "option";
+            label.className = "answer-option option";
 
             const input = document.createElement("input");
 
@@ -509,6 +587,10 @@ function loadTest2() {
   });
 }
 
+// ============================================================
+// LESEN TEIL 2 – SOFORTIGE KONTROLLE
+// ============================================================
+
 function checkTeil2Answer(input, questionBox, correctAnswer) {
   const options = questionBox.querySelectorAll(".option");
 
@@ -544,6 +626,10 @@ function checkTeil2Answer(input, questionBox, correctAnswer) {
     });
   }
 }
+
+// ============================================================
+// LESEN TEIL 2 – GESAMTERGEBNIS
+// ============================================================
 
 function checkAll2() {
   let total = 0;
@@ -694,16 +780,20 @@ function loadTest3() {
 
         questionBox.appendChild(questionText);
 
+        // --------------------------------------------------
+        // ANTWORTEN
+        // --------------------------------------------------
+
         const optionsBox = document.createElement("div");
 
-        optionsBox.className = "teil3-options";
+        optionsBox.className = "answer-options teil3-options";
 
         const letters = ["a", "b", "c", "d", "e", "f", "X"];
 
         letters.forEach((letter) => {
           const label = document.createElement("label");
 
-          label.className = "teil3-option";
+          label.className = "answer-option teil3-option";
 
           const input = document.createElement("input");
 
@@ -720,7 +810,6 @@ function loadTest3() {
           letterSpan.textContent = letter;
 
           label.appendChild(input);
-
           label.appendChild(letterSpan);
 
           input.addEventListener("change", function () {
@@ -741,6 +830,10 @@ function loadTest3() {
     container.appendChild(testBox);
   });
 }
+
+// ============================================================
+// LESEN TEIL 3 – SOFORTIGE KONTROLLE
+// ============================================================
 
 function checkTeil3Answer(input, questionBox, correctAnswer) {
   const options = questionBox.querySelectorAll(".teil3-option");
@@ -777,6 +870,10 @@ function checkTeil3Answer(input, questionBox, correctAnswer) {
     });
   }
 }
+
+// ============================================================
+// LESEN TEIL 3 – GESAMTERGEBNIS
+// ============================================================
 
 function checkAll3() {
   let total = 0;
@@ -882,15 +979,19 @@ function loadTest4() {
 
         questionBox.appendChild(questionText);
 
+        // --------------------------------------------------
+        // ANTWORTEN
+        // --------------------------------------------------
+
         const optionsBox = document.createElement("div");
 
-        optionsBox.className = "options";
+        optionsBox.className = "answer-options options";
 
         if (Array.isArray(question.options)) {
           question.options.forEach((option, optionIndex) => {
             const label = document.createElement("label");
 
-            label.className = "option";
+            label.className = "answer-option option";
 
             const input = document.createElement("input");
 
@@ -911,9 +1012,7 @@ function loadTest4() {
             optionText.textContent = option;
 
             label.appendChild(input);
-
             label.appendChild(letter);
-
             label.appendChild(optionText);
 
             input.addEventListener("change", function () {
@@ -933,6 +1032,10 @@ function loadTest4() {
     container.appendChild(testBox);
   });
 }
+
+// ============================================================
+// LESEN TEIL 4 – SOFORTIGE KONTROLLE
+// ============================================================
 
 function checkTeil4Answer(input, questionBox, correctAnswer) {
   const options = questionBox.querySelectorAll(".option");
@@ -969,6 +1072,10 @@ function checkTeil4Answer(input, questionBox, correctAnswer) {
     });
   }
 }
+
+// ============================================================
+// LESEN TEIL 4 – GESAMTERGEBNIS
+// ============================================================
 
 function checkAll4() {
   let total = 0;

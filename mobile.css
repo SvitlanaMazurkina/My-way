@@ -1,12 +1,9 @@
-```css
 /* ============================================================
    B2 BERUF TRAINER
    MOBILE.CSS
 
    Wird NACH style.css geladen.
-   Desktop-CSS bleibt unverändert.
    ============================================================ */
-
 
 /* ============================================================
    TABLET
@@ -67,7 +64,8 @@
   .teil3-test,
   .teil4-test,
   .lesson,
-  .hoeren1-test {
+  .hoeren1-test,
+  .hoeren2-test {
     padding: 16px;
     margin: 24px 0;
   }
@@ -85,10 +83,12 @@
      ALLE ANTWORTEN UNTEREINANDER
      ---------------------------------------------------------- */
 
+  .answer-options,
   .teil1-options,
-  .teil3-options,
   .options,
-  .hoeren1-options {
+  .teil3-options,
+  .hoeren1-options,
+  .hoeren2-options {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -96,12 +96,17 @@
     gap: 10px !important;
   }
 
+  .answer-option,
   .teil1-option,
-  .teil3-option,
   .option,
-  .hoeren1-option {
+  .teil3-option,
+  .hoeren1-option,
+  .hoeren2-option {
+    display: flex !important;
+    flex-direction: row !important;
     width: 100% !important;
     max-width: 100% !important;
+    box-sizing: border-box;
   }
 }
 
@@ -203,7 +208,8 @@
   .teil3-test,
   .teil4-test,
   .lesson,
-  .hoeren1-test {
+  .hoeren1-test,
+  .hoeren2-test {
     width: 100%;
     padding: 11px;
     margin: 18px 0;
@@ -211,7 +217,7 @@
   }
 
   /* ----------------------------------------------------------
-     TEIL 1
+     LESEN TEIL 1
      ---------------------------------------------------------- */
 
   .teil1-texts {
@@ -236,13 +242,8 @@
     margin: 14px 0;
   }
 
-  .teil1-option {
-    padding: 10px;
-    font-size: 15px;
-  }
-
   /* ----------------------------------------------------------
-     TEIL 2
+     LESEN TEIL 2
      ---------------------------------------------------------- */
 
   .text-box {
@@ -262,14 +263,8 @@
     line-height: 1.5;
   }
 
-  .option {
-    padding: 10px;
-    font-size: 15px;
-    line-height: 1.45;
-  }
-
   /* ----------------------------------------------------------
-     TEIL 3
+     LESEN TEIL 3
      ---------------------------------------------------------- */
 
   .teil3-response {
@@ -290,13 +285,8 @@
     margin: 14px 0;
   }
 
-  .teil3-option {
-    padding: 10px;
-    font-size: 15px;
-  }
-
   /* ----------------------------------------------------------
-     TEIL 4
+     LESEN TEIL 4
      ---------------------------------------------------------- */
 
   .teil4-test .text-box {
@@ -317,35 +307,95 @@
     margin: 14px 0;
   }
 
-  .hoeren1-options {
+  /* ----------------------------------------------------------
+     HÖREN TEIL 2
+     ---------------------------------------------------------- */
+
+  .hoeren2-test {
+    padding: 11px;
+    margin: 18px 0;
+  }
+
+  .hoeren2-answers {
+    padding: 11px;
+    margin: 15px 0 20px;
+  }
+
+  .hoeren2-answer {
+    gap: 8px;
+    margin: 10px 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .hoeren2-question {
+    padding: 11px;
+    margin: 14px 0;
+  }
+
+  .hoeren2-question-title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .hoeren2-dialogue {
+    padding: 12px;
+    margin-bottom: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ----------------------------------------------------------
+     UNIVERSAL ANSWERS
+     ---------------------------------------------------------- */
+
+  .answer-options,
+  .teil1-options,
+  .options,
+  .teil3-options,
+  .hoeren1-options,
+  .hoeren2-options {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
+    justify-content: flex-start !important;
     gap: 9px !important;
     width: 100% !important;
   }
 
-  .hoeren1-option {
+  .answer-option,
+  .teil1-option,
+  .option,
+  .teil3-option,
+  .hoeren1-option,
+  .hoeren2-option {
     display: flex !important;
     flex-direction: row !important;
     align-items: flex-start !important;
+    justify-content: flex-start !important;
+
     width: 100% !important;
     max-width: 100% !important;
+
     padding: 10px;
+    gap: 10px;
+
     font-size: 15px;
     line-height: 1.45;
+
+    box-sizing: border-box;
   }
 
-  .hoeren1-option input {
+  .answer-option input,
+  .teil1-option input,
+  .option input,
+  .teil3-option input,
+  .hoeren1-option input,
+  .hoeren2-option input {
     flex: 0 0 auto;
     width: 18px;
     height: 18px;
-    margin: 3px 10px 0 0;
-  }
-
-  .hoeren1-option span {
-    flex: 1 1 auto;
-    min-width: 0;
+    margin: 3px 0 0 0;
   }
 
   /* ----------------------------------------------------------
@@ -372,48 +422,62 @@
   body {
     padding: 3px;
   }
+
   .container {
     padding: 9px;
     margin: 6px auto;
   }
+
   h1 {
     font-size: 21px;
   }
+
   h2 {
     font-size: 18px;
   }
+
   h3 {
     font-size: 16px;
   }
+
   button {
     min-height: 44px;
     padding: 10px 8px;
     font-size: 15px;
   }
+
   .instruction {
     padding: 10px;
     font-size: 14px;
   }
+
   .teil1-test,
   .teil3-test,
   .teil4-test,
   .lesson,
-  .hoeren1-test {
+  .hoeren1-test,
+  .hoeren2-test {
     padding: 9px;
   }
+
   .teil1-question,
   .question,
   .teil3-question,
-  .hoeren1-question {
+  .hoeren1-question,
+  .hoeren2-question {
     padding: 9px;
   }
+
+  .answer-option,
   .teil1-option,
-  .teil3-option,
   .option,
-  .hoeren1-option {
+  .teil3-option,
+  .hoeren1-option,
+  .hoeren2-option {
     padding: 9px;
     font-size: 14px;
   }
+
   .text-box {
     padding: 10px;
     font-size: 14px;

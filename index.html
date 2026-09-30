@@ -27,6 +27,7 @@
       <button onclick="startLesen4()">📖 Lesen Teil 4</button>
 
       <button onclick="startHoeren1()">🎧 Hören Teil 1</button>
+      <button onclick="startHoeren2()">🎧 Hören Teil 2</button>
 
       <button disabled>✍️ Schreiben</button>
 
@@ -122,6 +123,24 @@
 
       <div id="resultHoeren1"></div>
     </div>
+    <!-- ==================== HÖREN TEIL 2 ==================== -->
+
+    <div id="hoeren2" class="container hidden">
+      <button onclick="backMenu()">⬅️ Zurück zum Menü</button>
+
+      <h1>Hören Teil 2</h1>
+
+      <p class="instruction">
+        Lesen Sie die sechs Antworten. Hören Sie die vier Gespräche und wählen
+        Sie jeweils die passende Antwort.
+      </p>
+
+      <div id="test-container-hoeren2"></div>
+
+      <button onclick="checkAllHoeren2()">Test auswerten</button>
+
+      <div id="resultHoeren2"></div>
+    </div>
 
     <!-- ==================== SCRIPTS ==================== -->
 
@@ -132,6 +151,7 @@
 
     <!-- Neues Hören -->
     <script src="hoeren.js"></script>
+    <script src="hoeren2.js"></script>
 
     <script src="vocabulary.js"></script>
     <script src="script.js"></script>
